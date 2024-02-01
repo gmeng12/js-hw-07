@@ -1,32 +1,14 @@
-'use strict'
+const nameInput = document.getElementById('name-input');
+const nameOutput = document.getElementById('name-output');
 
-class StringBuilder {
+nameInput.addEventListener('input', handleInputChange);
 
-  #value;
+function handleInputChange(event) {
+    const inputValue = event.target.value.trim();
 
-  constructor(initialValue = " ") {
-    this.#value = initialValue;
-  }
-  getValue() {
-    return this.#value;
-  }
-  padEnd(str) {
-    this.#value += str;
-  }
-  padStart(str) {
-    this.#value = str + this.#value;
-  }
-  padBoth(str) {
-    this.padStart(str);
-    this.padEnd(str);
-  }
-};
-
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+    if (inputValue === '') {
+        nameOutput.textContent = 'Anonymous';
+    } else {
+        nameOutput.textContent = inputValue;
+    };
+}; 
